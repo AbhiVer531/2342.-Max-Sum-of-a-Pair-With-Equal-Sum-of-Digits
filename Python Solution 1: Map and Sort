@@ -1,0 +1,15 @@
+class Solution:
+    def maximumSum(self, nums: List[int]) -> int:
+        maxi = -1  
+        mymap = {}  
+        for num in nums:
+            digit_sum = sum(int(d) for d in str(num)) 
+            if digit_sum not in mymap:
+                mymap[digit_sum] = []
+            mymap[digit_sum].append(num)
+        for key in mymap:
+            lst = mymap[key]
+            if len(lst) >= 2:
+                lst.sort()
+                maxi = max(maxi, lst[-1] + lst[-2])
+        return maxi
